@@ -203,15 +203,15 @@ Note: If you need to join this lab. You need to install docker-machine over orac
 2. Check and Locate Network Card by command:
 	ifconfig / ip addr
 
-3. Create Network for MACVLAN by command: (This example: will extract 192.168.99.193 - 192.168.99.206 for macvlan)
-	docker network create -d macvlan --subnet=192.168.99.0/24 --ip-range=192.168.99.192/28 --gateway=192.168.99.1 -o parent=enp0s8 macvlanlab
+3. Create Network for MACVLAN by command: (This example: will extract 192.168.57.193 - 192.168.57.206 for macvlan)
+	docker network create -d macvlan --subnet=192.168.57.0/24 --ip-range=192.168.57.192/28 --gateway=192.168.57.1 -o parent=enp0s8 macvlanlab
 
 4. Run container for web1, web2 and nginx by command:
-	docker container run -dt --name web1 --network macvlanlab --ip 192.168.99.193 --net-alias web1  labdocker/alpineweb:web1 node hello.js
+	docker container run -dt --name web1 --network macvlanlab --ip 192.168.57.193 --net-alias web1  labdocker/alpineweb:web1 node hello.js
 	
-	docker container run -dt --name web2 --network macvlanlab --ip 192.168.99.194 --net-alias web2 labdocker/alpineweb:web2 node hello.js
+	docker container run -dt --name web2 --network macvlanlab --ip 192.168.57.194 --net-alias web2 labdocker/alpineweb:web2 node hello.js
 
-	docker container run -dt --name nginx --network macvlanlab --ip 192.168.99.195 --net-alias nginx labdocker/nginx:labnetworkhttp2
+	docker container run -dt --name nginx --network macvlanlab --ip 192.168.57.195 --net-alias nginx labdocker/nginx:labnetworkhttp2
 
 4. On virtualbox: Set Property of Network Card for promiscuous mode
 and configure nic card for promiscuous mode via command:
@@ -226,21 +226,21 @@ and configure nic card for promiscuous mode via command:
 	docker container exec -it nginx ping web2
 
 6. Test connect from outside by command: (Operate on teacher macbook)
-	ping 192.168.99.193
-	ping 192.168.99.194
-	ping 192.168.99.195
-	curl http://192.168.99.193:3000 -v
-	curl http://192.168.99.194:3000 -v
-	curl http://192.168.99.195:8080 -v
-	curl https://192.168.99.195:8443 -v -k
+	ping 192.168.57.193
+	ping 192.168.57.194
+	ping 192.168.57.195
+	curl http://192.168.57.193:3000 -v
+	curl http://192.168.57.194:3000 -v
+	curl http://192.168.57.195:8080 -v
+	curl https://192.168.57.195:8443 -v -k
 
 7. Test open url for access by command:
-	http://192.168.99.195:8080/					==> via NGINX
-	http://192.168.99.195:8080/nodejs			==> via NGINX
-	https://192.168.99.195:8443					==> via NGINX
-	https://192.168.99.195:8443/nodejs			==> via NGINX
-	http://192.168.99.193:3000/					==> Native NODEJS1
-	http://192.168.99.194:3000/					==> Native NODEJS2
+	http://192.168.57.195:8080/					==> via NGINX
+	http://192.168.57.195:8080/nodejs			==> via NGINX
+	https://192.168.57.195:8443					==> via NGINX
+	https://192.168.57.195:8443/nodejs			==> via NGINX
+	http://192.168.57.193:3000/					==> Native NODEJS1
+	http://192.168.57.194:3000/					==> Native NODEJS2
 
 9. Clean Up Lab by command:
 	docker container stop nginx web1 web2
