@@ -68,7 +68,7 @@ Part2: Apparmor in Container
 4. Stop test container by command: "docker container stop sectestdefault && docker container rm sectestdefault"
 
 5. Copy profile and Load apparmor restrict profile by command:
-	sudo apparmor_parser -r -W ~/docker-workshop-112022/Workshop-2-3-Docker-Security/restrict-apparmor
+	sudo apparmor_parser -r -W ~/docker-workshop-032023/Workshop-2-3-Docker-Security/restrict-apparmor
 
 6. Check current profile of apparmor by command: sudo aa-status
 
@@ -92,7 +92,7 @@ Part2: Apparmor in Container
 
 10. Stop test container by command: "docker container stop sectestrestrict && docker container rm sectestrestrict"
 
-11. Remove apparmor profile by command: sudo apparmor_parser -R ~/docker-workshop-112022/Workshop-2-3-Docker-Security/restrict-apparmor && sudo aa-status
+11. Remove apparmor profile by command: sudo apparmor_parser -R ~/docker-workshop-032023/Workshop-2-3-Docker-Security/restrict-apparmor && sudo aa-status
 
 -----------------------------------------------------------------------------------------------------------------
 Part3: Content Trust (Signed Image)
